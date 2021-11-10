@@ -203,6 +203,60 @@ class DataProcessor(object):
         lines.append(line)
       return lines
 
+# cappello 
+class CappelloProcessor(DataProcessor):
+  """Base class for data converters for sequence classification data sets."""
+
+  def get_train_examples(self, data_dir):
+    """Gets a collection of `InputExample`s for the train set."""
+    file_path=os.path.join(data_dir,'trainData.csv')
+    f=open(file_path,'r')
+    train_data=[]
+    index=0
+    for line in f.readlines():
+      guid="train-%d"%(index)
+      line=line.replace('\n','').split('A:')
+      text_a=tokenization.convert_to_unicode(str(line[0]))
+      label=str(line[1]).lstrip()
+      train_data.append(InputExample(guid=guid,text_a=text_a,label=label))
+      index +=1
+    return train_data
+
+  def get_dev_examples(self, data_dir):
+    """Gets a collection of `InputExample`s for the dev set."""
+    file_path=os.path.join(data_dir,'devData.csv')
+    f=open(file_path,'r')
+    train_data=[]
+    index=0
+    for line in f.readlines():
+      guid="dev-%d"%(index)
+      line=line.replace('\n','').split('A:')
+      text_a=tokenization.convert_to_unicode(str(line[0]))
+      label=str(line[1]).lstrip()
+      train_data.append(InputExample(guid=guid,text_a=text_a,label=label))
+      index +=1
+    return train_data
+
+  def get_test_examples(self, data_dir):
+    """Gets a collection of `InputExample`s for prediction."""
+    file_path=os.path.join(data_dir,'testData.csv')
+    f=open(file_path,'r')
+    train_data=[]
+    index=0
+    for line in f.readlines():
+      guid="test-%d"%(index)
+      line=line.replace('\n','').split('A:')
+      text_a=tokenization.convert_to_unicode(str(line[0]))
+      label=str(line[1]).lstrip()
+      train_data.append(InputExample(guid=guid,text_a=text_a,label=label))
+      index +=1
+    return train_data
+
+  def get_labels(self):
+    """Gets the list of labels for this data set."""
+    return ['determination','validation','trigger']
+
+
 
 class XnliProcessor(DataProcessor):
   """Processor for the XNLI data set."""
@@ -788,6 +842,7 @@ def main(_):
       "mnli": MnliProcessor,
       "mrpc": MrpcProcessor,
       "xnli": XnliProcessor,
+      "cappello":CappelloProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,

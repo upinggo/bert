@@ -1,0 +1,4 @@
+"Add determination to SalesOrderItem"   insert into SalesOrder(determination) value ()
+"Ensure netAmount of SalesOrder is bigger than 0 (validation)"  insert into SalesOrder (validation) value (>0)
+"Add a specific determination implementation to my entity and do the mapping automatically"   insert into SalesOrder (validation) value (>0)
+Show me the most frequently used determination with trigger type containing ‘action called’.  insert into entity (trigger,determination) value ('action called') 

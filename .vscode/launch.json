@@ -1,0 +1,72 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: predict",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": [
+        "--task_name=cappello",
+        "--do_train=false",
+        "--do_eval=true",
+        "--predict_file=test.json",
+        "--data_dir=./data",
+        "--vocab_file=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/vocab.txt",
+        "--bert_config_file=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/bert_config.json",
+        "--init_checkpoint=./output/model.ckpt-5",
+        "--max_seq_length=128",
+        "--train_batch_size=8",
+        "--learning_rate=2e-10",
+        "--num_train_epochs=3.0",
+        "--output_dir=./result"
+      ]
+    },
+    {
+      "name": "Python: squad",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": [
+        "--task_name=MRPC",
+        "--do_train=true",
+        "--do_eval=true",
+        "--data_dir=./data",
+        "--vocab_file=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/vocab.txt",
+        "--bert_config_file=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/bert_config.json",
+        "--init_checkpoint=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/bert_model.ckpt",
+        "--max_seq_length=128",
+        "--train_batch_size=8",
+        "--learning_rate=2e-10",
+        "--num_train_epochs=3.0",
+        "--output_dir=../output"
+      ]
+    },
+    {
+      "name": "Python: classify",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": [
+        "--task_name=cappello",
+        "--do_train=true",
+        "--do_eval=true",
+        "--data_dir=./data",
+        "--vocab_file=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/vocab.txt",
+        "--bert_config_file=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/bert_config.json",
+        "--init_checkpoint=/Users/i557937/Downloads/uncased_L-12_H-768_A-12/bert_model.ckpt",
+        "--max_seq_length=128",
+        "--train_batch_size=8",
+        "--learning_rate=2e-10",
+        "--num_train_epochs=3.0",
+        "--output_dir=./output"
+      ]
+    }
+  ]
+}
